@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "fortune": "You won't die the next time you fall"
+    },
+    {
+        "id": 2,
+        "fortune": "Feel fortunate enough to have even eaten this cookie"
+    },
+    {
+        "id": 3,
+        "fortune": "You won't always lose"
+    },
+    {
+        "id": 4,
+        "fortune": "You win. Yes you actually did this is not a joke. What did you win? Click the fotune button again."
+    },
+    {
+        "id": 5,
+        "fortune": "You lose. Sorry, I can't always give you good news. If you got this fortune after the winning fortune, then there's no hope for you."
+    }
+]

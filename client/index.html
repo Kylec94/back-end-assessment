@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Back End Assessment</title>
+  </head>
+  <body class="container">
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton">GET FORTUNATE</button>
+    
+  
+
+
+
+
+
+
+
+    <section id="fortunes-container"></section>
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+      const baseURL = "http://localhost:4000/api/fortune/"
+
+      const fortunesContainer = document.querySelector('#fortunes-container')
+
+      document.getElementById("complimentButton").onclick = function () {
+        axios.get("http://localhost:4000/api/compliment/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+      document.getElementById('fortuneButton').onclick = function () {
+        axios.get("http://localhost:4000/api/fortune/")
+        .then(function (response) {
+          const fortune = response.data;
+           alert(fortune);
+        })
+      }
+
+  
+
+      function createFortuneCard(fortune) {
+        const fortuneCard = document.createElement('div')
+        fortuneCard.classList.add('fortune-card')
+
+        fortuneCard.innerHTML = `<p class ="fortune">${fortunes.fortune}</p>
+        <div class="btns container">
+          <button onclick="updateFortune(${fortunes.id}, 'minus')">-</button>
+          <button onclick="updateFortune(${fortunes.id}, 'plus')">+</button
+            </div>
+            <button onclick="deleteFortune(${fortunes.id})">delete</button>`
+
+            fortunesContainer.appendChild(fortuneCard)
+            
+      }
+
+
+      const fortunesCallback = ({data:fotunes}) => displayFortunes(fortunes)
+      const errCallback = err => console.log(err.response.data)
+
+      function displayFortunes(arr) {
+        fortunesContainer.innerHTML = ``
+        for (let i =0; i < arr.length; i++) {
+          createFortuneCard(arr[i])
+        }
+      }
+
+      const deleteFortune = id => axios.delete(`${baseURL}/${id}`).then(console.log('One cannot simply delete fortune!'))
+      const createFortune = body => axios.post(baseURL, body).then(fortunesCallback).catch(errCallback)
+      const updateFortune = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(console.log("That's not how fortunes work!"))
+
+        let bodyObj = {
+          fortune: fortune.value
+        }
+        createFortune(bodyObj)
+        fortune.value = ''
+
+    </script>
+  </body>
+</html>
